@@ -1,0 +1,23 @@
+* {
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+   background-color: #f5f5f5;
+}
+
+*,
+button,
+input {
+   border: 0;
+   outline: 0;
+   font-family: 'Roboto', sans-serif;
+}
+
+.App {
+   max-width: 1300px;
+   margin: auto;
+}
+
+a {
+   text-decoration: none;
+}
