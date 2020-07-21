@@ -14,7 +14,10 @@ const Navbar: React.FC = () => {
          <div className="links">
             <Link to="/voting-list">Voting list</Link>
             <Link to="new-vote">New vote</Link>
-            <Link to="user/profile">User</Link>
+            <Link to="sign-in">Sign in</Link>
+            <Link to="user/profile" hidden>
+               User
+            </Link>
          </div>
       </div>
    );

@@ -4,7 +4,7 @@ import './styles.css';
 const Home: React.FC = () => {
    return (
       <div className="Home">
-         <h1 className="title">Welcome User</h1>
+         <h1 className="title">Welcome</h1>
       </div>
    );
 };
