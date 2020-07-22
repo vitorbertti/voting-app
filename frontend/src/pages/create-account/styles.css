@@ -1,4 +1,4 @@
-.SignIn form {
+.CreateAccount form {
    margin: 80px auto;
    padding: 64px;
    max-width: 500px;
@@ -8,19 +8,19 @@
    flex-direction: column;
 }
 
-.SignIn form .field {
+.CreateAccount form .field {
    display: flex;
    flex-direction: column;
    margin: 12px 0;
 }
 
-.SignIn label {
+.CreateAccount label {
    font-size: 1.2em;
    background: var(--white);
    text-align: center;
 }
 
-.SignIn input {
+.CreateAccount input {
    border-radius: 8px;
    border: 0;
    padding: 16px 16px;
@@ -29,7 +29,7 @@
    width: 372px;
 }
 
-.SignIn button {
+.CreateAccount button {
    width: 260px;
    height: 56px;
    border-radius: 8px;
@@ -44,12 +44,6 @@
    color: var(--white);
 }
 
-.SignIn button:hover {
+.CreateAccount button:hover {
    background: var(--secondary);
-}
-
-.SignIn a {
-   text-align: center;
-   margin-top: 20px;
-   color: var(--link);
 }

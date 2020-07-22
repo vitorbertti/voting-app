@@ -1,6 +1,8 @@
 import React from 'react';
 import './styles.css';
 
+import { Link } from 'react-router-dom';
+
 const SignIn: React.FC = () => {
    return (
       <div className="SignIn">
@@ -15,6 +17,7 @@ const SignIn: React.FC = () => {
                <input type="password" id="password" placeholder="***********" required />
             </div>
             <button type="submit">Sign in</button>
+            <Link to="/create-account">Create an account</Link>
          </form>
       </div>
    );

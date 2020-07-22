@@ -1,8 +1,17 @@
+:root {
+   --primary: #2668ca;
+   --secondary: #0654c9;
+   --input: #6c6c80;
+   --white: #fff;
+   --background: #f5f5f5;
+   --link: #2a96dd;
+}
+
 * {
    margin: 0;
    padding: 0;
    box-sizing: border-box;
-   background-color: #f5f5f5;
+   background-color: var(--background);
 }
 
 *,
