@@ -23,7 +23,7 @@ const Home: React.FC = () => {
                         <Link to="/voting1">Voting 1</Link>
                      </td>
                      <td>
-                        <Link to="/user/profile">User</Link>
+                        <Link to="/profile/user">User</Link>
                      </td>
                      <td>2021/01/01</td>
                      <td>true</td>
@@ -33,7 +33,7 @@ const Home: React.FC = () => {
                         <Link to="/voting2">Voting 2</Link>
                      </td>
                      <td>
-                        <Link to="/user/profile">User</Link>
+                        <Link to="/profile/user">User</Link>
                      </td>
                      <td>2021/01/01</td>
                      <td>true</td>
