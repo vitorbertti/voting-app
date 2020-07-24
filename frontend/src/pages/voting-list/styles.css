@@ -1,0 +1,36 @@
+.VotingList .list {
+   margin: 80px auto;
+   padding: 64px;
+   max-width: 700px;
+   background: #fff;
+   border-radius: 8px;
+   display: flex;
+   flex-direction: column;
+}
+
+.VotingList table {
+   border-collapse: collapse;
+   width: 100%;
+}
+
+.VotingList td,
+.VotingList th {
+   border: 1px solid #dddddd;
+   text-align: left;
+   padding: 12px;
+}
+
+.VotingList .deactivated > td {
+   background-color: #b15353;
+   color: #fff;
+}
+
+.VotingList .deactivated a {
+   background: transparent;
+   color: #fff !important;
+   pointer-events: none;
+}
+
+.VotingList a {
+   color: #000;
+}

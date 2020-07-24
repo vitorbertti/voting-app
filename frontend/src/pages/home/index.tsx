@@ -14,7 +14,6 @@ const Home: React.FC = () => {
                      <th>Name</th>
                      <th>Created by</th>
                      <th>End date</th>
-                     <th>Active</th>
                   </tr>
                </thead>
                <tbody>
@@ -25,8 +24,7 @@ const Home: React.FC = () => {
                      <td>
                         <Link to="/profile/user">User</Link>
                      </td>
-                     <td>2021/01/01</td>
-                     <td>true</td>
+                     <td>01/01/2021</td>
                   </tr>
                   <tr>
                      <td>
@@ -35,8 +33,16 @@ const Home: React.FC = () => {
                      <td>
                         <Link to="/profile/user">User</Link>
                      </td>
-                     <td>2021/01/01</td>
-                     <td>true</td>
+                     <td>01/01/2021</td>
+                  </tr>
+                  <tr>
+                     <td>
+                        <Link to="/voting2">Voting 3</Link>
+                     </td>
+                     <td>
+                        <Link to="/profile/user2">User2</Link>
+                     </td>
+                     <td>30/12/2020</td>
                   </tr>
                </tbody>
             </table>
