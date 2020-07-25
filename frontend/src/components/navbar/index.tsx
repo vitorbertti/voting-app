@@ -13,9 +13,9 @@ const Navbar: React.FC = () => {
          </div>
          <div className="links">
             <Link to="/voting-list">Voting list</Link>
-            <Link to="new-vote">New vote</Link>
-            <Link to="sign-in">Sign in</Link>
-            <Link to="user/profile" hidden>
+            <Link to="/new-vote">New vote</Link>
+            <Link to="/sign-in">Sign in</Link>
+            <Link to="/profile/user" hidden>
                User
             </Link>
          </div>
