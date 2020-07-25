@@ -1,3 +1,15 @@
+.voting-info {
+   display: flex;
+   justify-content: space-between;
+   background-color: var(--white);
+   align-items: center;
+   margin-bottom: 10px;
+}
+
+.info {
+   background-color: var(--white);
+}
+
 .form {
    margin: 80px auto;
    padding: 64px;
@@ -61,6 +73,7 @@ label {
    font-size: 1.2em;
    background: var(--white);
    text-align: center;
+   margin-right: 10px;
 }
 
 .button {

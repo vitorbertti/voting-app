@@ -9,6 +9,7 @@ import CreateAccount from './pages/create-account';
 import Profile from './pages/profile';
 import VotingList from './pages/voting-list';
 import NewVote from './pages/new-vote';
+import Voting from './pages/voting';
 
 const Routes: React.FC = () => {
    return (
@@ -20,6 +21,7 @@ const Routes: React.FC = () => {
          <Route component={Profile} path="/profile/:id" />
          <Route component={VotingList} path="/voting-list" />
          <Route component={NewVote} path="/new-vote" />
+         <Route component={Voting} path="/voting/:id" />
       </BrowserRouter>
    );
 };
