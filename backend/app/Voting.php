@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Voting extends Model
 {
-   protected $fillable = ['name', 'endDate', 'voted'];
+   protected $fillable = ['name', 'end_date', 'voted'];
 
    public function votingItems()
    {

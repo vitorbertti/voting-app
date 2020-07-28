@@ -3,24 +3,24 @@
 namespace App\Http\Controllers;
 
 use Exception;
-use App\Voting;
+use App\VotingItem;
 use Illuminate\Http\Request;
 
-class VotingController extends Controller
+class VotingItemController extends Controller
 {
    public function index()
    {
-      $resource = Voting::get();
+      $resource = VotingItem::get();
 
       return response()->json($resource);
    }
 
    public function store(Request $request)
    {
-      $voting = new Voting();
+      $voting = new VotingItem();
       $voting->name = $request->name;
-      $voting->end_date = $request->end_date;
-      $voting->voted = $request->voted;
+      $voting->description = $request->description;
+      $voting->votingId = $request->votingId;
 
       try {
          $voting->save();
@@ -33,7 +33,7 @@ class VotingController extends Controller
 
    public function show(int $id)
    {
-      $resource = Voting::find($id);
+      $resource = VotingItem::find($id);
 
       if (is_null($resource)) {
          return response()->json('', 204);
@@ -43,10 +43,10 @@ class VotingController extends Controller
 
    public function update(int $id, Request $request)
    {
-      $resource = Voting::find($id);
+      $resource = VotingItem::find($id);
 
       if (is_null($resource)) {
-         return response()->json(['Error' => 'Voting' + 'not found'], 404);
+         return response()->json(['Error' => 'VotingItem' + 'not found'], 404);
       }
 
       $resource->fill($request->all());
@@ -57,10 +57,10 @@ class VotingController extends Controller
 
    public function destroy(int $id)
    {
-      $quantity = Voting::destroy($id);
+      $quantity = VotingItem::destroy($id);
 
       if ($quantity === 0) {
-         return response()->json(['Error' => 'Voting' + 'not found'], 404);
+         return response()->json(['Error' => 'VotingItem' + 'not found'], 404);
       }
 
       return response()->json('', 204);
