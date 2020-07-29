@@ -24,4 +24,12 @@ $router->group(['prefix' => 'api'], function () use ($router) {
         $router->put('/{id}', 'VotingController@update');
         $router->delete('/{id}', 'VotingController@destroy');
     });
+
+    $router->group(['prefix' => 'voting-items'], function () use ($router) {
+        $router->get('/', 'VotingItemController@index');
+        $router->post('/create', 'VotingItemController@store');
+        $router->get('/{id}', 'VotingItemController@show');
+        $router->put('/{id}', 'VotingItemController@update');
+        $router->delete('/{id}', 'VotingItemController@destroy');
+    });
 });

@@ -20,7 +20,8 @@ class VotingItemController extends Controller
       $voting = new VotingItem();
       $voting->name = $request->name;
       $voting->description = $request->description;
-      $voting->votingId = $request->votingId;
+      $voting->votes = $request->votes;
+      $voting->voting_id = $request->voting_id;
 
       try {
          $voting->save();
@@ -46,7 +47,7 @@ class VotingItemController extends Controller
       $resource = VotingItem::find($id);
 
       if (is_null($resource)) {
-         return response()->json(['Error' => 'VotingItem' + 'not found'], 404);
+         return response()->json(['Error' => 'Voting item ' . 'not found'], 404);
       }
 
       $resource->fill($request->all());
@@ -60,7 +61,7 @@ class VotingItemController extends Controller
       $quantity = VotingItem::destroy($id);
 
       if ($quantity === 0) {
-         return response()->json(['Error' => 'VotingItem' + 'not found'], 404);
+         return response()->json(['Error' => 'Voting item ' . 'not found'], 404);
       }
 
       return response()->json('', 204);
