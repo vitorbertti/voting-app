@@ -17,5 +17,11 @@ $router->get('/', function () use ($router) {
 });
 
 $router->group(['prefix' => 'api'], function () use ($router) {
-    $router->get('/', 'VotingController@index');
+    $router->group(['prefix' => 'votings'], function () use ($router) {
+        $router->get('/', 'VotingController@index');
+        $router->post('/create', 'VotingController@store');
+        $router->get('/{id}', 'VotingController@show');
+        $router->put('/{id}', 'VotingController@update');
+        $router->delete('/{id}', 'VotingController@destroy');
+    });
 });

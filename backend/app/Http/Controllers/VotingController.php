@@ -45,8 +45,10 @@ class VotingController extends Controller
    {
       $resource = Voting::find($id);
 
+      echo $resource;
+
       if (is_null($resource)) {
-         return response()->json(['Error' => 'Voting' + 'not found'], 404);
+         return response()->json(['Error' => 'Voting ' . 'not found'], 404);
       }
 
       $resource->fill($request->all());
@@ -60,7 +62,7 @@ class VotingController extends Controller
       $quantity = Voting::destroy($id);
 
       if ($quantity === 0) {
-         return response()->json(['Error' => 'Voting' + 'not found'], 404);
+         return response()->json(['Error' => 'Voting ' . 'not found'], 404);
       }
 
       return response()->json('', 204);

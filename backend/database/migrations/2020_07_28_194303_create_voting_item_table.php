@@ -13,11 +13,12 @@ class CreateVotingItemTable extends Migration
      */
     public function up()
     {
-        Schema::create('votingItem', function (Blueprint $table) {
+        Schema::create('votingItems', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->string('description');
             $table->unsignedBigInteger('voting_id');
+            $table->integer('votes');
             $table->timestamps();
 
             $table->foreign('voting_id')->references('id')->on('voting');
@@ -31,6 +32,6 @@ class CreateVotingItemTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('votingItem');
+        Schema::dropIfExists('votingItems');
     }
 }
