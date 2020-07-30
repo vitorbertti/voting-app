@@ -20,6 +20,7 @@ class VotingController extends Controller
       $voting = new Voting();
       $voting->name = $request->name;
       $voting->end_date = $request->end_date;
+      $voting->created_by = $request->created_by;
       $voting->voted = $request->voted;
 
       try {
