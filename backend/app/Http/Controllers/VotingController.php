@@ -10,7 +10,7 @@ class VotingController extends Controller
 {
    public function index()
    {
-      $resource = Voting::get();
+      $resource = Voting::orderBy('id', 'desc')->get();
 
       return response()->json($resource);
    }

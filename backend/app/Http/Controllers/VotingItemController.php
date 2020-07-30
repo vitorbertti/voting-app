@@ -15,6 +15,13 @@ class VotingItemController extends Controller
       return response()->json($resource);
    }
 
+   public function getItems(int $voting_id)
+   {
+      $resource = VotingItem::where('voting_id', '=', $voting_id)->get();
+
+      return response()->json($resource);
+   }
+
    public function store(Request $request)
    {
       $voting = new VotingItem();

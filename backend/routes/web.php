@@ -27,6 +27,7 @@ $router->group(['prefix' => 'api'], function () use ($router) {
 
     $router->group(['prefix' => 'voting-items'], function () use ($router) {
         $router->get('/', 'VotingItemController@index');
+        $router->get('/voting/{voting_id}', 'VotingItemController@getItems');
         $router->post('/create', 'VotingItemController@store');
         $router->get('/{id}', 'VotingItemController@show');
         $router->put('/{id}', 'VotingItemController@update');

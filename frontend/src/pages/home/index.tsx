@@ -1,9 +1,25 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './styles.css';
 
 import { Link } from 'react-router-dom';
+import api from '../../services/api';
+
+interface Voting {
+   id: string;
+   name: string;
+   end_date: string;
+   created_by: string;
+}
 
 const Home: React.FC = () => {
+   const [votings, setVotings] = useState([]);
+
+   useEffect(() => {
+      api.get('/votings/').then((response) => {
+         setVotings(response.data.slice(0, 3));
+      });
+   }, []);
+
    return (
       <div className="Home">
          <h1 className="title">Welcome</h1>
@@ -17,33 +33,18 @@ const Home: React.FC = () => {
                   </tr>
                </thead>
                <tbody>
-                  <tr>
-                     <td>
-                        <Link to="/voting/voting1">Voting 1</Link>
-                     </td>
-                     <td>
-                        <Link to="/profile/user">User</Link>
-                     </td>
-                     <td>01/01/2021</td>
-                  </tr>
-                  <tr>
-                     <td>
-                        <Link to="/voting/voting2">Voting 2</Link>
-                     </td>
-                     <td>
-                        <Link to="/profile/user">User</Link>
-                     </td>
-                     <td>01/01/2021</td>
-                  </tr>
-                  <tr>
-                     <td>
-                        <Link to="/voting/voting2">Voting 3</Link>
-                     </td>
-                     <td>
-                        <Link to="/profile/user2">User2</Link>
-                     </td>
-                     <td>30/12/2020</td>
-                  </tr>
+                  {votings &&
+                     votings.map((voting: Voting) => (
+                        <tr key={voting.id}>
+                           <td>
+                              <Link to={`/voting/${voting.name}`}> {voting.name} </Link>
+                           </td>
+                           <td>
+                              <Link to={`/profile/${voting.created_by}`}> {voting.created_by} </Link>
+                           </td>
+                           <td> {voting.end_date} </td>
+                        </tr>
+                     ))}
                </tbody>
             </table>
          </div>
