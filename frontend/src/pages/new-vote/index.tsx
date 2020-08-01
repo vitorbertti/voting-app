@@ -1,11 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './styles.css';
 
 import { FaTrash } from 'react-icons/fa';
-
-// interface Props {
-//    items: number[];
-// }
+import api from '../../services/api';
 
 interface Item {
    id: number;
@@ -30,6 +27,41 @@ const NewVote: React.FC = () => {
       e.preventDefault();
       items.splice(id, 1);
       setItems(items.filter((item) => item.id !== id));
+   };
+
+   const save = async (e: any) => {
+      e.preventDefault();
+      if (!name) {
+         alert('Name invalid');
+         return;
+      }
+
+      if (!endDate) {
+         alert('End date invalid');
+         return;
+      }
+
+      const response = await api.post('/votings/create/', {
+         name,
+         end_date: endDate,
+         voted: false,
+         created_by: 'UserTeste',
+      });
+
+      const votingId = response.data.id;
+
+      if (items.length) {
+         items.map(async (item) => {
+            await api.post('/voting-items/create', {
+               name: item.name,
+               description: item.description,
+               votes: 0,
+               voting_id: votingId,
+            });
+         });
+      }
+
+      alert('Created');
    };
 
    return (
@@ -69,21 +101,46 @@ const NewVote: React.FC = () => {
                </thead>
                <tbody>
                   {items.map((item) => (
-                     <ChildComponent key={item.id} item={item} removeItem={removeItem} />
+                     <ChildComponent
+                        key={item.id}
+                        item={item}
+                        removeItem={removeItem}
+                        items={items}
+                        setItems={setItems}
+                        index={item.id}
+                     />
                   ))}
                </tbody>
             </table>
             <button className="button" onClick={(e) => addItem(e)}>
                Add vote item
             </button>
+            <button className="button" onClick={(e) => save(e)}>
+               Save
+            </button>
          </form>
       </div>
    );
 };
 
-export const ChildComponent: React.FC<any> = ({ item, removeItem }) => {
+export const ChildComponent: React.FC<any> = ({ item, removeItem, items, setItems, index }) => {
    const [itemName, setItemName] = useState('');
    const [description, setDescription] = useState('');
+
+   useEffect(() => {
+      updateFieldChanged(index);
+   }, [itemName, description, index]);
+
+   function updateFieldChanged(index: any) {
+      let newItem = [...items];
+      console.log(newItem);
+
+      if (newItem) {
+         newItem[index].name = itemName;
+         newItem[index].description = description;
+         setItems(newItem);
+      }
+   }
 
    return (
       <tr className="new-vote">
