@@ -15,6 +15,7 @@ const NewVote: React.FC = () => {
    const [endDate, setEndDate] = useState('');
    const [items, setItems] = useState([{ id: 0, name: '', description: '' }]);
    const [itemId, setItemId] = useState(0);
+   const [errors, setErrors] = useState(['', '']);
 
    const addItem = (e: any) => {
       e.preventDefault();
@@ -29,39 +30,57 @@ const NewVote: React.FC = () => {
       setItems(items.filter((item) => item.id !== id));
    };
 
+   const handleValidation = () => {
+      const itemName = name;
+      const itemEndDate = endDate;
+      let formIsValid = true;
+      let addError = [...errors];
+
+      if (!itemName) {
+         formIsValid = false;
+         addError[0] = 'Cannot be empty';
+      } else {
+         addError[0] = '';
+      }
+
+      if (!itemEndDate) {
+         formIsValid = false;
+         addError[1] = 'Cannot be empty';
+      } else {
+         addError[1] = '';
+      }
+
+      setErrors(addError);
+      return formIsValid;
+   };
+
    const save = async (e: any) => {
       e.preventDefault();
-      if (!name) {
-         alert('Name invalid');
-         return;
-      }
 
-      if (!endDate) {
-         alert('End date invalid');
-         return;
-      }
-
-      const response = await api.post('/votings/create/', {
-         name,
-         end_date: endDate,
-         voted: false,
-         created_by: 'UserTeste',
-      });
-
-      const votingId = response.data.id;
-
-      if (items.length) {
-         items.map(async (item) => {
-            await api.post('/voting-items/create', {
-               name: item.name,
-               description: item.description,
-               votes: 0,
-               voting_id: votingId,
-            });
+      if (!handleValidation()) {
+         alert('Form has errors.');
+      } else {
+         const response = await api.post('/votings/create/', {
+            name,
+            end_date: endDate,
+            voted: false,
+            created_by: 'UserTeste',
          });
-      }
 
-      alert('Created');
+         const votingId = response.data.id;
+
+         if (items.length) {
+            items.map(async (item) => {
+               await api.post('/voting-items/create', {
+                  name: item.name,
+                  description: item.description,
+                  votes: 0,
+                  voting_id: votingId,
+               });
+            });
+         }
+         alert('The Voting was created');
+      }
    };
 
    return (
@@ -78,6 +97,7 @@ const NewVote: React.FC = () => {
                      onChange={(e) => setName(e.target.value)}
                      value={name}
                   />
+                  <span style={{ color: 'red' }}>{errors[0]}</span>
                </div>
                <div className="info">
                   <label htmlFor="end-date">End date</label>
@@ -88,6 +108,7 @@ const NewVote: React.FC = () => {
                      onChange={(e) => setEndDate(e.target.value)}
                      value={endDate}
                   />
+                  <span style={{ color: 'red' }}>{errors[1]}</span>
                </div>
             </div>
             <table>
@@ -108,6 +129,7 @@ const NewVote: React.FC = () => {
                         items={items}
                         setItems={setItems}
                         index={item.id}
+                        errors={errors}
                      />
                   ))}
                </tbody>
@@ -123,7 +145,7 @@ const NewVote: React.FC = () => {
    );
 };
 
-export const ChildComponent: React.FC<any> = ({ item, removeItem, items, setItems, index }) => {
+export const ChildComponent: React.FC<any> = ({ item, removeItem, items, setItems, index, errors }) => {
    const [itemName, setItemName] = useState('');
    const [description, setDescription] = useState('');
 

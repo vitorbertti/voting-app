@@ -37,7 +37,7 @@ const Home: React.FC = () => {
                      votings.map((voting: Voting) => (
                         <tr key={voting.id}>
                            <td>
-                              <Link to={`/voting/${voting.name}`}> {voting.name} </Link>
+                              <Link to={`/voting/${voting.id}`}> {voting.name} </Link>
                            </td>
                            <td>
                               <Link to={`/profile/${voting.created_by}`}> {voting.created_by} </Link>

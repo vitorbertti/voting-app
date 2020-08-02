@@ -10,11 +10,13 @@ interface VotingItem {
    votes: number;
 }
 
-const Voting: React.FC = () => {
+const Voting: React.FC = (props: any) => {
    const [votingItems, setVotingItems] = useState([]);
 
+   const votingId = props.match.params.id;
+
    useEffect(() => {
-      api.get(`/voting-items/voting/${1}`).then((response) => {
+      api.get(`/voting-items/voting/${votingId}`).then((response) => {
          setVotingItems(response.data);
       });
    }, []);
